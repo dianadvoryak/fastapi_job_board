@@ -1,4 +1,6 @@
 agent-detector==2.0.0
+aio-pika==10.0.1
+aiormq==7.0.0
 alembic==1.19.2
 amqp==5.3.1
 annotated-doc==0.0.5
@@ -32,8 +34,11 @@ Mako==1.4.1
 markdown-it-py==4.2.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
+multidict==6.7.1
 packaging==26.3
+pamqp==4.0.1
 prompt_toolkit==3.0.53
+propcache==0.5.2
 psycopg2-binary==2.9.12
 pydantic==2.13.5
 pydantic-extra-types==2.11.1
@@ -66,3 +71,4 @@ vine==5.1.0
 watchfiles==1.2.0
 wcwidth==0.8.3
 websockets==17.1
+yarl==1.24.5
