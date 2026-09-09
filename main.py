@@ -21,7 +21,8 @@ app = FastAPI(
     title="Job Board API (Clean Architecture)",
     description="Проект сайта вакансий с FastAPI, PostgreSQL, Redis и RabbitMQ",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
+    debug=True
 )
 
 # Подключаем роутеры с префиксом версии API

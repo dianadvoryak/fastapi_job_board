@@ -39,3 +39,4 @@ class SQLAlchemyRepository(AbstractRepository[T]):
         stmt = select(self.model).filter_by(**filter_by)
         res = await self.session.execute(stmt)
         return res.scalar_one_or_none()
+
