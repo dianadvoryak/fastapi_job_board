@@ -4,6 +4,7 @@ from src.core.redis_client import redis_backend
 from src.core.rabbit_client import rabbit_backend
 from src.api.v1.jobs import router as jobs_router
 from src.api.v1.users import router as users_router
+from src.api.v1.applications import router as applications_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -28,6 +29,7 @@ app = FastAPI(
 # Подключаем роутеры с префиксом версии API
 app.include_router(jobs_router, prefix="/api/v1")
 app.include_router(users_router, prefix="/api/v1")
+app.include_router(applications_router, prefix="/api/v1")
 
 @app.get("/", tags=["Root"])
 async def root():
