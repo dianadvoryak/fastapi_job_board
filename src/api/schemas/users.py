@@ -6,5 +6,5 @@ class UserCreateSchema(BaseModel):
 
 class UserResponseSchema(BaseModel):
     email: EmailStr
-    id: str
+    id: int
     is_active: bool

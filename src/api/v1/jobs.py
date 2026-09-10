@@ -1,8 +1,10 @@
+import aio_pika
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from redis.asyncio import Redis
 from typing import List, Dict
 
+from src.core.rabbit_client import get_rabbit_channel
 from src.core.db import get_async_session
 from src.core.redis_client import get_redis
 from src.services.job_service import JobService
@@ -13,15 +15,16 @@ router = APIRouter(prefix="/jobs", tags=["Jobs & Trends"])
 
 @router.post("/", response_model=JobResponseSchema, status_code=status.HTTP_201_CREATED)
 async def create_new_job(
-        job_in: JobCreateSchema,
-        db: AsyncSession = Depends(get_async_session),
-        redis: Redis = Depends(get_redis)
+    job_in: JobCreateSchema,
+    db: AsyncSession = Depends(get_async_session),
+    redis: Redis = Depends(get_redis),
+    rabbit_channel: aio_pika.RobustChannel = Depends(get_rabbit_channel)  # Внедряем канал RabbitMQ
 ):
-    """Создать новую вакансию."""
-    job_service = JobService(db, redis)
+    """Создать новую вакансию и отправить уведомление в очередь."""
+    # Передаем rabbit_channel в сервис
+    job_service = JobService(db, redis, rabbit_channel)
     new_job = await job_service.create_job(job_in.model_dump())
     return new_job
-
 
 @router.get("/trends/skills", response_model=Dict[str, float])
 async def get_trending_skills(

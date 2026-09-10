@@ -1,6 +1,11 @@
 uvicorn main:app --reload
-alembic init -t async migrations  
+python src/workers/notification_worker.py
+
+
 http://127.0.0.1:8000/docs  
+alembic init -t async migrations  
+alembic upgrade head
+
 
 
 pip3 freeze > requirements.txt
@@ -39,3 +44,9 @@ breakpoint()
 3. Вы можете писать имена переменных (например, ввести x или y), чтобы увидеть их текущие значения.
 4. Напишите c (continue) и нажмите Enter, чтобы программа побежала дальше.
 ```
+
+Начнем проектировать Rate Limiter на Redis для защиты эндпоинтов?
+Или перейдем к RabbitMQ воркеру для фоновых задач?
+
+Перейдем к RabbitMQ воркеру для тяжелых фоновых задач (например, отправка уведомлений или сборка PDF)?
+Или реализуем Rate Limiter на Redis, чтобы защитить эндпоинты от спама?
