@@ -47,3 +47,6 @@ breakpoint()
 
 Начнем проектировать Rate Limiter на Redis для защиты эндпоинтов?
 Или реализуем Rate Limiter на Redis, чтобы защитить эндпоинты от спама?
+
+endpoints:
+<img src="src/img/docs.png">
