@@ -1,6 +1,6 @@
-uvicorn main:app --reload
-python src/workers/notification_worker.py
-
+uvicorn main:app --reload  
+python src/workers/notification_worker.py  
+  
 
 http://127.0.0.1:8000/docs  
 alembic init -t async migrations  
